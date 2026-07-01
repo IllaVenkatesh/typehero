@@ -1,153 +1,103 @@
-# ⌨️ TypeHero – From Zero to Typing Hero
+# TypeHero ⌨️
 
-TypeHero is a modern and interactive typing practice platform designed to help users improve their typing speed, accuracy, and consistency through multiple difficulty levels and customizable practice modes.
+> From Zero Typing to Typing Hero. A premium, modern, responsive typing practice platform.
 
-🌐 **Live Demo:** https://fascinating-kringle-8fdc08.netlify.app/
+TypeHero is a modern, interactive typing trainer designed to help users improve speed, accuracy, and consistency through multiple difficulty levels and customizable practice modes. It runs entirely in the browser and requires no heavy setup.
+
+🌐 Live Demo: https://fascinating-kringle-8fdc08.netlify.app/
 
 ---
 
-## 🚀 Features
+## 🚀 Key Features
 
-### 🎯 Multiple Typing Modes
+### 1. Progressive Difficulty Modes
+- 🌱 Beginner Mode: Focused on letters and easy words. Hides metrics to emphasize accuracy and muscle memory, and shows a live interactive keyboard.
+- 🚀 Mid Mode: Focuses on short sentences and displays live WPM and accuracy feedback.
+- 👑 Pro Mode: Supports longer paragraphs and custom timer durations for endurance practice.
+- 🆓 Freedom Mode: Lets you practice with your own content by uploading PDFs, JPGs, or PNGs, extracting the text, and editing it before you start.
 
-- **Beginner Mode** – Simple and easy words for new learners.
-- **Intermediate Mode** – Moderate difficulty words and phrases.
-- **Pro Mode** – Long paragraphs and advanced typing challenges.
-- **Freedom Mode** – Practice with your own content.
+### 2. Synthesized Audio Feedback
+TypeHero features mechanical-style click and chime sounds generated in the browser using the Web Audio API.
+- Tactile Click: Standard keypress feedback
+- Deep Thud: Spacebar feedback
+- Error Buzz: Mistake feedback
+- Success Chime: Completion feedback
+- Mute Control: Toggle sound from the header
 
-### 📊 Performance Tracking
-
-- Real-time WPM (Words Per Minute)
-- Accuracy Calculation
-- Error Tracking
-- Progress Monitoring
-
-### 🎨 Modern User Interface
-
-- Responsive Design
-- Clean and Minimal Layout
-- Mobile-Friendly Design
-- Smooth User Experience
-
-### 🔊 Interactive Experience
-
-- Dynamic Text Rendering
-- Session Statistics
-- Local Data Storage
-- Typing Feedback System
+### 3. Analytics & Streaks
+- 📈 SVG progress charts for recent sessions
+- 🏆 Local leaderboard support
+- 🔥 Daily typing streak tracking
+- 📊 Persistent practice logs stored in browser LocalStorage
 
 ---
 
 ## 🛠️ Tech Stack
-
-### Frontend
-
 - HTML5
 - CSS3
 - JavaScript (ES6)
-
-### Browser APIs
-
 - Local Storage API
-- DOM Manipulation
-- Event Handling
+- DOM Manipulation and Event Handling
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-TypeHero/
-│
+typehero/
 ├── index.html
 ├── style.css
-│
-├── js/
-│   ├── app.js
-│   ├── words.js
-│   ├── audio.js
-│   └── storage.js
-│
-└── README.md
+└── js/
+    ├── app.js
+    ├── words.js
+    ├── audio.js
+    └── storage.js
 ```
 
 ---
 
-## ⚡ Getting Started
+## 🛠️ How to Open and Play
 
-### Clone the Repository
+TypeHero runs entirely in the browser and does not require active server dependencies.
 
-```bash
-git clone https://github.com/IllaVenkatesh/typehero.git
-```
+### Method A: Direct File Execution (Recommended)
+1. Navigate to your project directory.
+2. Double-click index.html or open it in any modern browser.
 
-### Navigate to Project
+### Method B: Local Server
+If you prefer a local server:
+- Node.js: Run `npx http-server -p 8080` in the project folder.
+- Python: Run `python -m http.server 8080` in the project folder.
+- Open http://localhost:8080
 
-```bash
-cd typehero
-```
+---
 
-### Run Locally
-
-Open:
-
-```bash
-index.html
-```
-
-Or use VS Code Live Server.
+## 💡 Typing Best Practices
+1. Home Row Positioning: Place your left fingers on A S D F and your right fingers on J K L ;.
+2. Accuracy First: Aim for 95%+ accuracy before trying to go faster.
+3. Don't Look Down: Trust your fingers and use the on-screen keyboard when needed.
 
 ---
 
 ## 📈 Future Enhancements
-
-- User Authentication
-- Global Leaderboard
-- Typing Certificates
-- Dark/Light Theme Toggle
-- Multiplayer Typing Battles
-- AI-Powered Typing Analysis
-- PDF & Image-Based Practice
-- Personalized Learning Paths
-
----
-
-## 🎯 Learning Outcomes
-
-This project demonstrates:
-
-- Frontend Development
-- JavaScript DOM Manipulation
-- Event-Driven Programming
-- Local Storage Management
-- Responsive UI Design
-- Performance Tracking Logic
+- User authentication
+- Global leaderboard
+- Typing certificates
+- Dark/light theme toggle
+- Multiplayer typing battles
+- AI-powered typing analysis
+- Personalized learning paths
 
 ---
 
 ## 👨‍💻 Author
 
-**Venkatesh Illa**
+Venkatesh Illa
 
-B.Tech Artificial Intelligence & Machine Learning  
+B.Tech Artificial Intelligence & Machine Learning
 Python Backend Developer | Full Stack Learner
-
-🌐 Live Demo: https://fascinating-kringle-8fdc08.netlify.app/
 
 ---
 
 ## ⭐ Support
-
-If you found this project useful:
-
-- Star the repository ⭐
-- Fork the project 🍴
-- Share feedback 💡
-
----
-
-### Live Demo
-
-🔗 https://fascinating-kringle-8fdc08.netlify.app/
-
-**TypeHero – Practice. Improve. Master. 🚀**
+If you found this project useful, consider starring the repository or sharing feedback.

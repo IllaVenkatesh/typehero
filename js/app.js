@@ -408,6 +408,9 @@ class TypeHeroApp {
           throw new Error('PDF support is not available right now.');
         }
 
+        // Configure Worker Source for PDFJS UMD build
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
         const arrayBuffer = await file.arrayBuffer();
         const pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
         const pages = [];
@@ -416,6 +419,9 @@ class TypeHeroApp {
           const page = await pdf.getPage(i);
           const content = await page.getTextContent();
           pages.push(content.items.map(item => item.str).join(' '));
+          
+          // Provide extraction progress
+          this.updateFreedomStatus(`Reading page ${i} of ${pdf.numPages}...`);
         }
         extractedText = pages.join('\n\n').trim();
       } else if (file.type.startsWith('image/') || /\.(png|jpe?g)$/i.test(fileName)) {
@@ -423,7 +429,18 @@ class TypeHeroApp {
           throw new Error('Image OCR is not available right now.');
         }
 
-        const { data } = await window.Tesseract.recognize(file, 'eng');
+        // Perform OCR with progress logging
+        const { data } = await window.Tesseract.recognize(
+          file, 
+          'eng',
+          {
+            logger: m => {
+              if (m.status === 'recognizing') {
+                this.updateFreedomStatus(`Extracting text: ${Math.round(m.progress * 100)}%`);
+              }
+            }
+          }
+        );
         extractedText = data.text.trim();
       } else {
         throw new Error('Unsupported file type. Please upload a PDF, JPG, JPEG, or PNG.');
