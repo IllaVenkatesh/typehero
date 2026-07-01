@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeHero — From Zero to Typing Hero</title>
+  <!-- Google Fonts: Outfit for titles, Inter for UI text, JetBrains Mono for typing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons for clean aesthetics (loaded via CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Ambient Gradient Background Shapes -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- Header Section -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="#" class="logo-area" id="nav-logo">
+        <div class="logo-icon">
+          <i data-lucide="keyboard"></i>
+        </div>
+        <span class="logo-text">Type<span class="logo-highlight">Hero</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#" class="nav-link active" data-target="home">Home</a>
+        <a href="#" class="nav-link" data-target="practice">Practice</a>
+        <a href="#" class="nav-link" data-target="stats">Stats</a>
+        <a href="#" class="nav-link" data-target="about">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Sound Toggle -->
+        <button id="sound-toggle-btn" class="icon-btn" title="Toggle Sound Feedback">
+          <i data-lucide="volume-2"></i>
+        </button>
+        <!-- Progress Button -->
+        <button id="progress-btn" class="primary-btn btn-progress">
+          <i data-lucide="trending-up"></i>
+          <span>My Progress</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    
+    <!-- 1. HOME VIEW -->
+    <section id="home-view" class="view-section active">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <div class="hero-badge">
+          <i data-lucide="star" class="badge-star"></i>
+          <span>From Zero Letters to <span class="purple-glow-text">Typing Hero</span></span>
+        </div>
+        <h1 class="hero-title">Test Your <span class="blue-glow-text">Typing</span>. Improve <span class="purple-glow-text">Every Day</span>.</h1>
+        <p class="hero-subtitle">Choose your mode and start your journey from zero level typing to hero.</p>
+      </div>
+
+      <!-- Mode Selector Section -->
+      <div class="section-divider">
+        <span class="divider-text">
+          <i data-lucide="gamepad-2"></i> CHOOSE YOUR MODE
+        </span>
+      </div>
+
+      <div class="modes-grid">
+        <!-- Beginner Mode Card -->
+        <div class="mode-card beginner-card" id="card-beginner">
+          <div class="mode-card-header">
+            <div class="mode-icon-wrapper beginner-icon">
+              <i data-lucide="sprout"></i>
+            </div>
+            <div class="mode-title-meta">
+              <h3>Beginner</h3>
+              <p>Start from the basics</p>
+            </div>
+          </div>
+          <ul class="mode-bullets">
+            <li><i data-lucide="check"></i> Easy words & common letters</li>
+            <li><i data-lucide="check"></i> Short tests (15–30s)</li>
+            <li><i data-lucide="check"></i> Focus on accuracy over speed</li>
+          </ul>
+
+          <!-- Visual Keyboard Preview -->
+          <div class="keyboard-preview">
+            <div class="preview-row">
+              <span>A</span><span>S</span><span>D</span><span>F</span><span>J</span><span>K</span><span>L</span>
+            </div>
+            <div class="preview-row">
+              <span>Z</span><span>X</span><span>C</span><span>V</span><span>B</span><span>N</span><span>M</span>
+            </div>
+          </div>
+
+          <button class="mode-start-btn beginner-gradient-btn" data-mode="beginner">
+            <span>Start Beginner</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- Intermediate Mode Card -->
+        <div class="mode-card mid-card" id="card-medium">
+          <div class="mode-card-header">
+            <div class="mode-icon-wrapper mid-icon">
+              <i data-lucide="rocket"></i>
+            </div>
+            <div class="mode-title-meta">
+              <h3>Intermediate</h3>
+              <p>Level up your speed</p>
+            </div>
+          </div>
+          <ul class="mode-bullets">
+            <li><i data-lucide="check"></i> Medium words & sentences</li>
+            <li><i data-lucide="check"></i> Balanced speed & accuracy</li>
+            <li><i data-lucide="check"></i> Improve consistency</li>
+          </ul>
+
+          <div class="typing-box-preview">
+            <span class="preview-correct">Practice</span> makes perfect. Keep <span class="preview-typing">typing</span> and level up your skills.<span class="preview-cursor">|</span>
+          </div>
+
+          <button class="mode-start-btn mid-gradient-btn" data-mode="mid">
+            <span>Start Intermediate</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- Pro Mode Card -->
+        <div class="mode-card pro-card" id="card-pro">
+          <div class="advanced-badge">
+            <i data-lucide="zap"></i> Advanced
+          </div>
+          <div class="mode-card-header">
+            <div class="mode-icon-wrapper pro-icon">
+              <i data-lucide="crown"></i>
+            </div>
+            <div class="mode-title-meta">
+              <h3>Pro</h3>
+              <p>Become a typing hero</p>
+            </div>
+          </div>
+          <ul class="mode-bullets">
+            <li><i data-lucide="check"></i> Paragraphs & long texts</li>
+            <li><i data-lucide="check"></i> Adjustable time limit</li>
+            <li><i data-lucide="check"></i> Test your real skills</li>
+          </ul>
+
+          <div class="typing-box-preview pro-preview">
+            Typing is an essential skill in the digital age. It not only helps you communicate better but also increases your productivity. Keep going!
+          </div>
+
+          <button class="mode-start-btn pro-gradient-btn" data-mode="pro">
+            <span>Start Pro</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- Freedom Mode Card -->
+        <div class="mode-card freedom-card" id="card-freedom">
+          <div class="advanced-badge">
+            <i data-lucide="sparkles"></i> New
+          </div>
+          <div class="mode-card-header">
+            <div class="mode-icon-wrapper freedom-icon">
+              <i data-lucide="scan-search"></i>
+            </div>
+            <div class="mode-title-meta">
+              <h3>Freedom Mode</h3>
+              <p>Practice with your own content</p>
+            </div>
+          </div>
+          <ul class="mode-bullets">
+            <li><i data-lucide="check"></i> Upload PDFs, JPGs, and PNGs</li>
+            <li><i data-lucide="check"></i> Extract and edit your text</li>
+            <li><i data-lucide="check"></i> Practice with real-world material</li>
+          </ul>
+
+          <div class="typing-box-preview freedom-preview">
+            Practice typing with your own content. Upload images or PDFs and improve using real-world material.
+          </div>
+
+          <button class="mode-start-btn freedom-gradient-btn" data-mode="freedom">
+            <span>Start Freedom</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="freedom-panel glass-panel hidden" id="freedom-mode-panel">
+        <div class="freedom-panel-header">
+          <div class="mode-icon-wrapper freedom-icon">
+            <i data-lucide="upload-cloud"></i>
+          </div>
+          <div>
+            <h3>Freedom Mode</h3>
+            <p>Upload a PDF or image, extract the text, edit it, and start practicing.</p>
+          </div>
+        </div>
+
+        <div class="freedom-upload-grid">
+          <div class="freedom-upload-card">
+            <label class="freedom-file-label" for="freedom-file-input">
+              <i data-lucide="folder-up"></i>
+              <span>Choose PDF, JPG, JPEG, or PNG</span>
+            </label>
+            <input id="freedom-file-input" type="file" accept=".pdf,.jpg,.jpeg,.png" />
+            <button id="freedom-upload-btn" class="secondary-btn freedom-upload-btn">
+              <i data-lucide="scan-search"></i>
+              <span>Extract Text</span>
+            </button>
+          </div>
+
+          <div class="freedom-settings-card">
+            <label for="freedom-timer-select">Timer</label>
+            <select id="freedom-timer-select">
+              <option value="0">Unlimited</option>
+              <option value="30">30s</option>
+              <option value="60">60s</option>
+              <option value="120">120s</option>
+              <option value="300">300s</option>
+            </select>
+            <div class="freedom-status" id="freedom-status-message">Upload a file to begin.</div>
+            <div class="freedom-processing hidden" id="freedom-processing-indicator">
+              <i data-lucide="loader-circle" class="spin"></i>
+              <span>Processing file…</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="freedom-preview-card">
+          <div class="freedom-preview-header">
+            <span>Preview & Edit</span>
+            <div class="freedom-stats">
+              <span id="freedom-char-count">0 characters</span>
+              <span id="freedom-word-count">0 words</span>
+            </div>
+          </div>
+          <textarea id="freedom-text-preview" placeholder="Extracted text will appear here. You can edit it before practicing."></textarea>
+          <button id="freedom-start-btn" class="primary-btn freedom-start-btn">
+            <i data-lucide="play"></i>
+            <span>Start Practice</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Feature Highlights -->
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon"><i data-lucide="trending-up"></i></div>
+          <div class="feature-info">
+            <h4>Track Progress</h4>
+            <p>See your improvement with detailed stats.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i data-lucide="target"></i></div>
+          <div class="feature-info">
+            <h4>Improve Accuracy</h4>
+            <p>Focus on accuracy and reduce mistakes.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i data-lucide="zap"></i></div>
+          <div class="feature-info">
+            <h4>Increase Speed</h4>
+            <p>Boost your WPM and type like a pro.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i data-lucide="award"></i></div>
+          <div class="feature-info">
+            <h4>Become a Hero</h4>
+            <p>From zero level typing to typing hero.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PRACTICE VIEW -->
+    <section id="practice-view" class="view-section">
+      <div class="practice-container">
+        <!-- Test Header (Metrics & Mode Info) -->
+        <div class="test-header glass-panel">
+          <div class="test-meta-info">
+            <div class="current-mode-actions">
+              <button id="back-to-home-btn" class="icon-btn practice-back-btn" title="Back to home">
+                <i data-lucide="arrow-left"></i>
+              </button>
+              <span class="mode-indicator" id="current-test-mode">Pro Mode</span>
+            </div>
+            <div class="streak-indicator-chip" id="streak-chip">
+              <i data-lucide="flame"></i>
+              <span id="streak-count-val">0</span> Day Streak
+            </div>
+          </div>
+
+          <!-- Real-Time Metrics -->
+          <div class="live-metrics">
+            <div class="metric-pill">
+              <span class="metric-label">Lesson</span>
+              <span class="metric-value font-mono" id="live-lesson">1/5</span>
+            </div>
+            <div class="metric-pill" id="live-wpm-pill">
+              <span class="metric-label">WPM</span>
+              <span class="metric-value font-mono" id="live-wpm">0</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-label">Accuracy</span>
+              <span class="metric-value font-mono" id="live-accuracy">100%</span>
+            </div>
+            <div class="metric-pill error-pill" id="live-errors-pill">
+              <span class="metric-label">Errors</span>
+              <span class="metric-value font-mono" id="live-errors">0</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-label">Target</span>
+              <span class="metric-value font-mono" id="live-target">95%+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="practice-status glass-panel" id="practice-status-panel">
+          <div class="practice-status-title" id="practice-status-text">Home Row Keys • Focus on accuracy first. Complete the line to unlock the next lesson.</div>
+          <div class="practice-finger-guidance" id="practice-finger-guidance">Finger guide: Left Index</div>
+        </div>
+
+        <!-- Main Typing Area -->
+        <div class="typing-box-container glass-panel" id="typing-container-box">
+          <div class="typing-input-shadow" id="typing-input-trigger" tabindex="0">
+            <!-- Focus overlay triggers keyboard focus -->
+            <div class="focus-alert">
+              <i data-lucide="keyboard"></i>
+              <span>Click here or press any key to start typing</span>
+            </div>
+            
+            <!-- Dynamic Typing Text Box -->
+            <div class="typing-text" id="typing-text-display">
+              <!-- Content generated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Beginner Mode: Visual Keyboard UI -->
+        <div class="keyboard-container glass-panel hidden" id="practice-keyboard">
+          <!-- Dynamically populated QWERTY keyboard with custom active key highlighting -->
+        </div>
+
+        <!-- Control buttons -->
+        <div class="practice-controls">
+          <button id="restart-test-btn" class="control-btn secondary-btn">
+            <i data-lucide="rotate-ccw"></i>
+            <span>Restart</span>
+          </button>
+          <button id="next-lesson-btn" class="control-btn primary-btn disabled" disabled>
+            <i data-lucide="arrow-right"></i>
+            <span>Next Lesson</span>
+          </button>
+          <button id="change-mode-btn" class="control-btn secondary-btn">
+            <i data-lucide="layout-grid"></i>
+            <span>Change Mode</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. STATS VIEW -->
+    <section id="stats-view" class="view-section">
+      <div class="stats-container">
+        <h2 class="view-title"><i data-lucide="trending-up"></i> Performance Dashboard</h2>
+        
+        <!-- Stats summary cards -->
+        <div class="stats-summary-grid">
+          <div class="stat-box glass-panel">
+            <div class="stat-icon purple-gradient-icon"><i data-lucide="award"></i></div>
+            <div class="stat-meta">
+              <span class="stat-num" id="stat-avg-wpm">0</span>
+              <span class="stat-label">Average WPM</span>
+            </div>
+          </div>
+          <div class="stat-box glass-panel">
+            <div class="stat-icon blue-gradient-icon"><i data-lucide="zap"></i></div>
+            <div class="stat-meta">
+              <span class="stat-num" id="stat-max-wpm">0</span>
+              <span class="stat-label">Highest WPM</span>
+            </div>
+          </div>
+          <div class="stat-box glass-panel">
+            <div class="stat-icon green-gradient-icon"><i data-lucide="target"></i></div>
+            <div class="stat-meta">
+              <span class="stat-num" id="stat-avg-accuracy">0%</span>
+              <span class="stat-label">Average Accuracy</span>
+            </div>
+          </div>
+          <div class="stat-box glass-panel">
+            <div class="stat-icon gold-gradient-icon"><i data-lucide="flame"></i></div>
+            <div class="stat-meta">
+              <span class="stat-num" id="stat-streak">0</span>
+              <span class="stat-label">Day Streak</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Column: Chart & Leaderboard -->
+        <div class="stats-details-row">
+          <!-- Progress Chart Panel -->
+          <div class="chart-panel glass-panel">
+            <h3 class="panel-title"><i data-lucide="line-chart"></i> Typing Progress (Recent Tests)</h3>
+            <div class="chart-wrapper">
+              <!-- Visual CSS/SVG Chart -->
+              <svg class="progress-chart-svg" viewBox="0 0 600 240" id="stats-chart-svg">
+                <!-- Grid Lines -->
+                <line x1="50" y1="30" x2="570" y2="30" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+                <line x1="50" y1="80" x2="570" y2="80" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+                <line x1="50" y1="130" x2="570" y2="130" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+                <line x1="50" y1="180" x2="570" y2="180" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+                
+                <!-- Chart content populated by JS -->
+                <g id="chart-elements">
+                  <text x="300" y="120" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="14">Take a test to see your history!</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Leaderboard Panel -->
+          <div class="leaderboard-panel glass-panel">
+            <h3 class="panel-title"><i data-lucide="trophy"></i> Local Leaderboard</h3>
+            <div class="leaderboard-list" id="leaderboard-container">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- History Table & Actions -->
+        <div class="history-panel glass-panel">
+          <div class="history-header">
+            <h3 class="panel-title"><i data-lucide="clock"></i> Completed Practice History</h3>
+            <button id="clear-data-btn" class="danger-btn">
+              <i data-lucide="trash-2"></i>
+              <span>Clear History</span>
+            </button>
+          </div>
+          <div class="table-container">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>Mode</th>
+                  <th>Speed (WPM)</th>
+                  <th>Accuracy</th>
+                  <th>Errors</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ABOUT VIEW -->
+    <section id="about-view" class="view-section">
+      <div class="about-container glass-panel">
+        <h2 class="view-title"><i data-lucide="info"></i> About TypeHero</h2>
+        <div class="about-content">
+          <div class="about-hero">
+            <h3>From Zero to Typing Hero</h3>
+            <p>TypeHero is designed to help anyone learn the muscle memory required to type rapidly and accurately without looking at their hands. Touch typing lets you write thoughts smoothly, improving efficiency in programming, writing, and daily communication.</p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-card">
+              <div class="about-card-icon"><i data-lucide="sparkles"></i></div>
+              <h4>Why Practice in Levels?</h4>
+              <p>By splitting practice into letters (Beginner), sentences (Intermediate), and paragraphs (Pro), you systematically train different levels of muscle memory without burning out.</p>
+            </div>
+            <div class="about-card">
+              <div class="about-card-icon"><i data-lucide="keyboard"></i></div>
+              <h4>The Home Row Position</h4>
+              <p>Place your left fingers on A-S-D-F and right fingers on J-K-L-;. Rest your thumbs on the spacebar. Let the physical bumps on 'F' and 'J' guide you back without looking down.</p>
+            </div>
+            <div class="about-card">
+              <div class="about-card-icon"><i data-lucide="music"></i></div>
+              <h4>Aesthetic Audio</h4>
+              <p>TypeHero uses built-in audio synthesis to mimic a tactile mechanical keyboard. This helps build a sound rhythm matching your keystrokes, which improves typing cadence.</p>
+            </div>
+          </div>
+
+          <div class="tips-box">
+            <h4>💡 Expert Typing Tips</h4>
+            <ul>
+              <li><strong>Do not look down:</strong> Force yourself to look only at the screen. Beginner mode highlights keys on the virtual keyboard to help transition.</li>
+              <li><strong>Prioritize Accuracy:</strong> Speed comes naturally once your fingers know where to go. Aim for 95%+ accuracy before trying to speed up.</li>
+              <li><strong>Type regularly:</strong> Even 5–10 minutes of daily typing can yield major improvements in just a few weeks.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>Made with love for my sister 💗</p>
+  </footer>
+
+  <!-- 5. RETRY PROMPT MODAL -->
+  <div class="modal-overlay" id="retry-modal">
+    <div class="modal-content glass-panel">
+      <div class="result-badge-icon" style="background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%); color: white; animation: none;">
+        <i data-lucide="refresh-cw"></i>
+      </div>
+      <h2 id="retry-modal-title">Retry to Unlock the Next Level</h2>
+      <p id="retry-modal-message">You need a higher accuracy score to continue. Retry this level until you reach the target.</p>
+      <div class="result-pill" style="margin-bottom: 1.5rem;">
+        <span class="res-num" id="retry-modal-accuracy">0%</span>
+        <span class="res-lbl">Current Accuracy</span>
+      </div>
+      <div class="modal-actions">
+        <button id="retry-modal-retry-btn" class="primary-btn">
+          <i data-lucide="rotate-ccw"></i>
+          <span>Retry This Level</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. RESULT MODAL (POPUP) -->
+  <div class="modal-overlay" id="result-modal">
+    <div class="modal-content glass-panel">
+      <div class="modal-header">
+        <div class="result-badge-icon" id="result-trophy-wrapper">
+          <i data-lucide="award"></i>
+        </div>
+        <h2 id="result-title">Congratulations!</h2>
+        <p id="result-subtitle">You completed the typing test successfully.</p>
+      </div>
+
+      <!-- Main Result Cards -->
+      <div class="result-metrics">
+        <div class="result-pill">
+          <span class="res-num" id="result-wpm">0</span>
+          <span class="res-lbl">Words Per Minute</span>
+        </div>
+        <div class="result-pill">
+          <span class="res-num" id="result-accuracy">0%</span>
+          <span class="res-lbl">Accuracy</span>
+        </div>
+        <div class="result-pill">
+          <span class="res-num" id="result-errors">0</span>
+          <span class="res-lbl">Mistakes</span>
+        </div>
+      </div>
+
+      <!-- Performance Feedback Box -->
+      <div class="feedback-container">
+        <div id="feedback-rating">Rank: Typing Rookie 🥉</div>
+        <p id="feedback-text">Keep practicing! Focus on getting those keys right first, and speed will follow.</p>
+      </div>
+
+      <!-- Modal Actions -->
+      <div class="modal-actions">
+        <button id="modal-retry-btn" class="primary-btn">
+          <i data-lucide="rotate-ccw"></i>
+          <span>Retry Challenge</span>
+        </button>
+        <button id="modal-stats-btn" class="secondary-btn">
+          <i data-lucide="trending-up"></i>
+          <span>View Detailed Stats</span>
+        </button>
+        <button id="modal-close-btn" class="secondary-btn">
+          <i data-lucide="home"></i>
+          <span>Back to Home</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load JS Modules -->
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="js/words.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
