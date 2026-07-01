@@ -207,8 +207,7 @@ class TypeHeroApp {
 
     document.getElementById('retry-modal-retry-btn').addEventListener('click', () => {
       this.hideRetryModal();
-      this.resetTest();
-      inputTrigger.focus();
+      this.focusTypingInput();
     });
 
     document.getElementById('modal-stats-btn').addEventListener('click', () => {
@@ -1089,8 +1088,8 @@ class TypeHeroApp {
     const titleText = document.getElementById('retry-modal-title');
 
     accuracyText.textContent = `${finalAccuracy}%`;
-    titleText.textContent = this.currentMode === 'beginner' || this.currentMode === 'freedom' ? 'Retry to Unlock the Next Level' : 'Try Again';
-    document.getElementById('retry-modal-message').textContent = `You reached ${finalAccuracy}% accuracy. Reach ${targetAccuracy}% or higher to unlock the next level.`;
+    titleText.textContent = 'Level Locked';
+    document.getElementById('retry-modal-message').textContent = `You need ${targetAccuracy}% accuracy or higher to unlock this level.`;
     modal.classList.add('active');
     this.focusTypingInput();
   }
