@@ -145,14 +145,19 @@ class TypeHeroApp {
       this.updateFreedomStats();
     });
 
-    // 5. Sound toggle action
+    // 5. Sound toggle & settings actions
     const soundBtn = document.getElementById('sound-toggle-btn');
+    const soundSettingsBtn = document.getElementById('sound-settings-btn');
     this.soundEnabled = window.TypeHeroAudio.isEnabled();
     this.updateSoundBtnUI();
+    this.bindSoundSettingsUI();
     soundBtn.addEventListener('click', () => {
       const enabled = window.TypeHeroAudio.toggle();
       this.soundEnabled = enabled;
       this.updateSoundBtnUI();
+    });
+    soundSettingsBtn.addEventListener('click', () => {
+      this.openSoundSettingsModal();
     });
 
     // 6. Typing trigger actions
@@ -268,12 +273,103 @@ class TypeHeroApp {
     const soundBtn = document.getElementById('sound-toggle-btn');
     if (this.soundEnabled) {
       soundBtn.innerHTML = '<i data-lucide="volume-2"></i>';
-      soundBtn.title = "Mute Sound";
+      soundBtn.title = 'Mute Sound';
     } else {
       soundBtn.innerHTML = '<i data-lucide="volume-x"></i>';
-      soundBtn.title = "Unmute Sound";
+      soundBtn.title = 'Unmute Sound';
     }
     lucide.createIcons();
+  }
+
+  bindSoundSettingsUI() {
+    const modal = document.getElementById('sound-settings-modal');
+    const closeBtn = document.getElementById('sound-settings-close-btn');
+    const themeSelect = document.getElementById('audio-theme-select');
+    const volumeSlider = document.getElementById('audio-volume-slider');
+    const volumeValue = document.getElementById('audio-volume-value');
+    const intensityButtons = document.querySelectorAll('.audio-intensity-option');
+
+    if (!modal) return;
+
+    closeBtn?.addEventListener('click', () => this.closeSoundSettingsModal());
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        this.closeSoundSettingsModal();
+      }
+    });
+
+    themeSelect?.addEventListener('change', (event) => {
+      window.TypeHeroAudio.setSettings({ theme: event.target.value });
+      this.soundEnabled = window.TypeHeroAudio.isEnabled();
+      this.updateSoundBtnUI();
+      this.syncSoundSettingsUI();
+    });
+
+    volumeSlider?.addEventListener('input', (event) => {
+      const volume = Number(event.target.value || 80);
+      volumeValue.textContent = `${volume}%`;
+      window.TypeHeroAudio.setSettings({ volume });
+      this.soundEnabled = window.TypeHeroAudio.isEnabled();
+      this.updateSoundBtnUI();
+      this.syncSoundSettingsUI();
+    });
+
+    intensityButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const value = button.getAttribute('data-intensity');
+        window.TypeHeroAudio.setSettings({ intensity: value });
+        this.soundEnabled = window.TypeHeroAudio.isEnabled();
+        this.updateSoundBtnUI();
+        this.syncSoundSettingsUI();
+      });
+    });
+
+    this.syncSoundSettingsUI();
+  }
+
+  syncSoundSettingsUI() {
+    const settings = window.TypeHeroAudio.getSettings();
+    const themeSelect = document.getElementById('audio-theme-select');
+    const volumeSlider = document.getElementById('audio-volume-slider');
+    const volumeValue = document.getElementById('audio-volume-value');
+    const intensityButtons = document.querySelectorAll('.audio-intensity-option');
+
+    if (themeSelect) {
+      themeSelect.value = settings.theme || 'premium';
+    }
+
+    if (volumeSlider && volumeValue) {
+      volumeSlider.value = settings.volume ?? 80;
+      volumeValue.textContent = `${settings.volume ?? 80}%`;
+    }
+
+    intensityButtons.forEach(button => {
+      const isActive = button.getAttribute('data-intensity') === (settings.intensity || 'soft');
+      button.classList.toggle('active', isActive);
+    });
+  }
+
+  openSoundSettingsModal() {
+    const modal = document.getElementById('sound-settings-modal');
+    modal?.classList.add('active');
+    this.syncSoundSettingsUI();
+  }
+
+  closeSoundSettingsModal() {
+    document.getElementById('sound-settings-modal')?.classList.remove('active');
+  }
+
+  flashTypingFeedback(type) {
+    const container = document.getElementById('typing-container-box');
+    if (!container) return;
+
+    container.classList.remove('feedback-correct', 'feedback-error', 'feedback-success');
+    container.classList.add(type === 'success' ? 'feedback-success' : type === 'error' ? 'feedback-error' : 'feedback-correct');
+
+    clearTimeout(this.feedbackTimeout);
+    this.feedbackTimeout = setTimeout(() => {
+      container.classList.remove('feedback-correct', 'feedback-error', 'feedback-success');
+    }, 220);
   }
 
   updateStreakBadge() {
@@ -789,6 +885,8 @@ class TypeHeroApp {
           window.TypeHeroAudio.playClick();
         }
 
+        this.flashTypingFeedback('correct');
+
         this.currentIndex++;
         
         if (this.currentIndex >= this.textToType.length) {
@@ -807,6 +905,8 @@ class TypeHeroApp {
         window.TypeHeroAudio.playError();
 
         this.currentIndex++;
+
+        this.flashTypingFeedback('error');
 
         if (this.currentIndex >= this.textToType.length) {
           this.completeLesson();
@@ -940,6 +1040,10 @@ class TypeHeroApp {
     const targetAccuracy = this.currentMode === 'beginner' || this.currentMode === 'freedom' ? 90 : this.lessonTargetAccuracy;
     const passed = finalAccuracy >= targetAccuracy;
     this.lastLessonPassed = passed;
+
+    if (passed) {
+      this.flashTypingFeedback('success');
+    }
 
     window.TypeHeroAudio.playSuccess();
 

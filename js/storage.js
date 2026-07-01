@@ -9,7 +9,17 @@ class TypeHeroStorage {
     this.streakKey = 'typehero_streak';
     this.lastActiveKey = 'typehero_last_active';
     this.leaderboardKey = 'typehero_leaderboard';
+    this.audioSettingsKey = 'typehero_audio_settings';
     this.initializeDefaultLeaderboard();
+  }
+
+  getAudioSettings() {
+    const raw = localStorage.getItem(this.audioSettingsKey);
+    return raw ? JSON.parse(raw) : null;
+  }
+
+  saveAudioSettings(settings) {
+    localStorage.setItem(this.audioSettingsKey, JSON.stringify(settings));
   }
 
   // Retrieve complete typing history

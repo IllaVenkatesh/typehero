@@ -37,9 +37,12 @@
       </nav>
 
       <div class="header-actions">
-        <!-- Sound Toggle -->
+        <!-- Sound Controls -->
         <button id="sound-toggle-btn" class="icon-btn" title="Toggle Sound Feedback">
           <i data-lucide="volume-2"></i>
+        </button>
+        <button id="sound-settings-btn" class="icon-btn" title="Audio Settings">
+          <i data-lucide="sliders-horizontal"></i>
         </button>
         <!-- Progress Button -->
         <button id="progress-btn" class="primary-btn btn-progress">
@@ -583,6 +586,51 @@
           <i data-lucide="home"></i>
           <span>Back to Home</span>
         </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="sound-settings-modal">
+    <div class="modal-content glass-panel sound-settings-content">
+      <div class="sound-settings-header">
+        <div class="sound-settings-icon">
+          <i data-lucide="sliders-horizontal"></i>
+        </div>
+        <div>
+          <h3>Audio Settings</h3>
+          <p>Refine the feedback so it stays calm, focused, and premium.</p>
+        </div>
+      </div>
+
+      <div class="sound-settings-section">
+        <label class="sound-settings-label" for="audio-theme-select">Audio Theme</label>
+        <select id="audio-theme-select" class="custom-select">
+          <option value="premium">Premium</option>
+          <option value="minimal">Minimal</option>
+          <option value="mechanical">Mechanical</option>
+          <option value="silent">Silent</option>
+        </select>
+      </div>
+
+      <div class="sound-settings-section">
+        <div class="sound-settings-row">
+          <label class="sound-settings-label" for="audio-volume-slider">Volume</label>
+          <span class="sound-settings-value" id="audio-volume-value">80%</span>
+        </div>
+        <input id="audio-volume-slider" type="range" min="0" max="100" value="80" />
+      </div>
+
+      <div class="sound-settings-section">
+        <label class="sound-settings-label">Key Feedback Intensity</label>
+        <div class="audio-intensity-options">
+          <button class="audio-intensity-option" data-intensity="soft">Soft</button>
+          <button class="audio-intensity-option" data-intensity="medium">Medium</button>
+          <button class="audio-intensity-option" data-intensity="strong">Strong</button>
+        </div>
+      </div>
+
+      <div class="sound-settings-actions">
+        <button id="sound-settings-close-btn" class="secondary-btn">Close</button>
       </div>
     </div>
   </div>

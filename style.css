@@ -1089,6 +1089,29 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   min-height: 180px;
   cursor: text;
+  transition: box-shadow var(--transition-normal), transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.typing-box-container.feedback-correct {
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.2), 0 0 18px rgba(16, 185, 129, 0.12);
+}
+
+.typing-box-container.feedback-error {
+  border-color: rgba(239, 68, 68, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.18), 0 0 18px rgba(239, 68, 68, 0.1);
+}
+
+.typing-box-container.feedback-success {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.2), 0 0 24px rgba(59, 130, 246, 0.16);
+  animation: successGlow 220ms ease;
+}
+
+@keyframes successGlow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.008); }
+  100% { transform: scale(1); }
 }
 
 /* Shadow trigger captures keystrokes */
@@ -1758,6 +1781,100 @@ h1, h2, h3, h4, h5, h6 {
 
 .modal-overlay.active .modal-content {
   transform: scale(1) translateY(0);
+}
+
+/* Sound settings modal */
+.sound-settings-content {
+  max-width: 560px;
+  padding: 2rem;
+  text-align: left;
+}
+
+.sound-settings-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sound-settings-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(168, 85, 247, 0.14);
+  color: var(--color-secondary);
+}
+
+.sound-settings-header h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.2rem;
+}
+
+.sound-settings-header p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.sound-settings-section {
+  margin-bottom: 1.25rem;
+}
+
+.sound-settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.sound-settings-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.35rem;
+}
+
+.sound-settings-value {
+  font-size: 0.88rem;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+#audio-volume-slider {
+  width: 100%;
+  accent-color: var(--color-secondary);
+}
+
+.audio-intensity-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.audio-intensity-option {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 0.55rem 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.audio-intensity-option.active {
+  background: rgba(168, 85, 247, 0.16);
+  color: var(--text-main);
+  border-color: rgba(168, 85, 247, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(168, 85, 247, 0.2);
+}
+
+.sound-settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.25rem;
 }
 
 /* Result Trophy icon styling */
